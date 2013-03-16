@@ -46,5 +46,8 @@ function reservar(){
 			//Sincronizar en el Servidor
 			alert('desconectate');
 		}
+		$('#historial').on("pageload", function(){
+		leerHistorial();
+		});
 	});
 }
