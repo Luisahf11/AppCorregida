@@ -86,3 +86,30 @@ function guardarHistorial(habs,pers,dias){
 		pgAlert('Historial Guardada','Ver en Reservaciones Anteriores');
 	});
 }
+
+function elimiarLocales(id){
+	accesoBD().transaction(function(tx){
+		tx.executeSql('DELETE FROM reserva WHERE rId='+id);
+	}, function(err){
+		pgAlert('Error',err.code);
+	}, function(){
+	//Corecta
+	});
+}
+function leerReservas(){
+	accesoBD().transaction(function(tx){
+	tx.executeSql("SELECT * FROM reserva",[],function(tx1,resultado){
+		cant=resultado.rows.length;
+		reg=resultados.rows;
+		for(i=0;i<cant;i++){
+			syncSend(reg.item(i).habitaciones,reg.item(i).personas,reg.item(i).dias,reg.tem(i).tipo,reg.item(i).rId);
+		}
+	},function(err){
+		pgAlert('Error SELECT',err.code);
+	});
+	},function(err){
+		pgAlert('Error TRANSACCION',err.code);
+		},function(){
+			//Correcto
+		});
+}

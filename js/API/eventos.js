@@ -25,7 +25,9 @@ $(document).ready(function(e){
 		$('#historial').on("pageload", function(){
 		leerHistorial();
 		});
-		
+		document.addEventListener("online",function(){
+			leerReservas();
+		}, false);
 	}, false);
 });
 
